@@ -7,7 +7,6 @@ export const Summary = () => {
   const { isCurrentSalesModified } = useCurrrentSalesStore();
 
   const listOfRecords = JSON.parse(localStorage.getItem("currentSales"));
-  console.log("listOfRecords", listOfRecords);
 
   const {
     totalKilos,

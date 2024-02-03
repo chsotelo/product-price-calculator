@@ -11,7 +11,6 @@ export default function AbocadoHome() {
       <div className="mx-2">
         <UserWhoSellsForm />
         <MainAbocado />
-        <Summary />
       </div>
     </main>
   );

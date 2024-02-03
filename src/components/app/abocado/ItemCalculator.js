@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import Image from "next/image";
 import React, { useEffect } from "react";
@@ -16,8 +17,7 @@ export const ItemCalculator = ({
   watch,
   idItem,
 }) => {
-  const { isCurrentSalesModified, setCurrentSalesModified } =
-    useCurrrentSalesStore();
+  const { setCurrentSalesModified } = useCurrrentSalesStore();
   let listHistoryFromLocalStorage;
   if (typeof window !== "undefined") {
     listHistoryFromLocalStorage = localStorage.getItem(
