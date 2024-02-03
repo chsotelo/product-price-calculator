@@ -15,4 +15,14 @@ module.exports = {
     },
   },
   plugins: [],
+  theme: {
+    extend: {
+      colors: {
+        // "slate-950": "#0F0F0F",
+      },
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
+      },
+    },
+  },
 };
