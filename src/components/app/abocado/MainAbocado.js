@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ItemCalculator } from "./ItemCalculator";
 import Image from "next/image";
 import { useFieldArray, useForm } from "react-hook-form";
@@ -7,6 +7,7 @@ import { NAME_OF_LOCAL_STORAGE_SALES } from "../constants/general";
 import { Input } from "../../general/inputs/Input";
 import { Select } from "../../general/select/Select";
 import { Summary } from "./sumary.js/Summary";
+import { Button } from "../../general/button/Button";
 
 const optionsForSelect = [
   {
@@ -22,6 +23,7 @@ const optionsForSelect = [
 
 export const MainAbocado = () => {
   let listHistoryFromLocalStorage;
+  const [seeButton, setSeeButton] = useState(false);
   if (typeof window !== "undefined") {
     listHistoryFromLocalStorage = localStorage.getItem(
       NAME_OF_LOCAL_STORAGE_SALES
@@ -44,7 +46,7 @@ export const MainAbocado = () => {
   });
 
   return (
-    <>
+    <div className="max-w-[340px] bg-slate-900 p-3 rounded-lg">
       <div className="text-sm mb-3">
         <div className="flex gap-2 flex-col max-w-[320px] ">
           <h1 className="text-xl text-red-500 text-center">Venta actual</h1>
@@ -103,6 +105,19 @@ export const MainAbocado = () => {
         </section>
       </div>
       <Summary />
-    </>
+      <div className="mt-6 flex items-center gap-2 flex-col ">
+        <span className="flex flex-row gap-2 w-full">
+          <input
+            type="checkbox"
+            onChange={(e) => setSeeButton(e.target.checked)}
+          />
+          <label>Confirmo que terminé</label>
+        </span>
+
+        <Button disabledStatus={!seeButton} typeStyle={"tertiary"}>
+          Registrar
+        </Button>
+      </div>
+    </div>
   );
 };

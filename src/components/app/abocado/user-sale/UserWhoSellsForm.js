@@ -1,13 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect } from "react";
-import { get, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Input } from "../../../general/inputs/Input";
-import { areObjectsEqual } from "../../../../algorithms/areArrayOfObjectEquals";
 import { NAME_OF_LOCAL_STORAGE_USER_WHO_SELL } from "../../constants/general";
 
-const styleOfInput = {
-  width: "16rem",
-};
 const inputFields = [
   { type: "text", id: "DNI", placeholder: "DNI", name: "DNI" },
   { type: "text", id: "name", placeholder: "Nombre", name: "name" },

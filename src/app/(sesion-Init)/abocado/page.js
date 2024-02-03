@@ -1,5 +1,4 @@
 import { MainAbocado } from "../../../components/app/abocado/MainAbocado";
-import { Summary } from "../../../components/app/abocado/sumary.js/Summary";
 import { UserWhoSellsForm } from "../../../components/app/abocado/user-sale/UserWhoSellsForm";
 
 export default function AbocadoHome() {
