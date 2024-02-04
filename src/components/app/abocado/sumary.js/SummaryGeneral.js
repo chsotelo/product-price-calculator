@@ -126,7 +126,7 @@ export const SummaryGeneral = () => {
           measurement={"soles"}
           isGreen={true}
         />
-        {/* <div className="mt-6">
+        <div className="mt-6">
           <Button
             typeStyle={"primary"}
             onClick={() => {
@@ -141,7 +141,14 @@ export const SummaryGeneral = () => {
             }}>
             Descargar PDF
           </Button>
-        </div> */}
+          <Button
+            typeStyle={"tertiary"}
+            onClick={() => {
+              resetSales();
+            }}>
+            Reiniciar
+          </Button>
+        </div>
       </div>
     </div>
   );

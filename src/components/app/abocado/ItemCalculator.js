@@ -13,6 +13,7 @@ export const ItemCalculator = ({
   getValues,
   register,
   remove,
+  update,
   setValue,
   watch,
   idItem,
@@ -83,7 +84,12 @@ export const ItemCalculator = ({
         }}
         onClick={
           getValues("listOfRegisters").length === 1
-            ? undefined
+            ? () => {
+                update(index, {
+                  kilos: "",
+                  cajas: "",
+                });
+              }
             : () => {
                 remove(index);
               }

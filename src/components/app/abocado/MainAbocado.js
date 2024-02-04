@@ -69,6 +69,7 @@ export const MainAbocado = () => {
     fields: listOfRegistersFields,
     append,
     remove,
+    update,
   } = useFieldArray({
     name: "listOfRegisters",
     control,
@@ -93,12 +94,12 @@ export const MainAbocado = () => {
       items: data.listOfRegisters,
     };
     addSales(dataToSave);
-    reset();
-    localStorage.removeItem(NAME_OF_LOCAL_STORAGE_SALES);
     localStorage.removeItem(NAME_OF_LOCAL_STORAGE_CURRENT_METADATA);
     setCurrentSalesModified();
-    setValue("listOfRegisters", [{ kilos: "", cajas: "" }]);
     setIsUpdated();
+    localStorage.removeItem(NAME_OF_LOCAL_STORAGE_SALES);
+    setValue("listOfRegisters", [{ kilos: "", cajas: "" }]);
+    reset();
   };
 
   useEffect(() => {
@@ -164,6 +165,7 @@ export const MainAbocado = () => {
                   index={index}
                   register={register}
                   remove={remove}
+                  update={update}
                   item={item}
                   setValue={setValue}
                   getValues={getValues}
