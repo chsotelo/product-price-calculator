@@ -29,6 +29,14 @@ export const ItemCalculator = ({
     `listOfRegisters.${index}.kilos`,
     `listOfRegisters.${index}.cajas`,
   ]);
+
+  useEffect(() => {
+    if (!idItem) {
+      setValue(`listOfRegisters.${index}.id`, item.id);
+    }
+    setValue(`listOfRegisters.${index}.id`, idItem);
+  }, []);
+
   const id = getValues(`listOfRegisters.${index}.id`);
   const values = getValues("listOfRegisters");
 
@@ -51,6 +59,7 @@ export const ItemCalculator = ({
         placeholder="Kilos"
         name={`listOfRegisters.${index}.kilos`}
         register={register}
+        required={true}
       />
       <Input
         type="number"
@@ -58,6 +67,7 @@ export const ItemCalculator = ({
         placeholder="cajas"
         name={`listOfRegisters.${index}.cajas`}
         register={register}
+        required={true}
       />
       <Image
         src={"/remove_trash.svg"}

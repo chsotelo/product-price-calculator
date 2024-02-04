@@ -1,12 +1,22 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { Fragment, useEffect } from "react";
 import { calculatePriceOfProduct } from "../../../../algorithms/calculatePriceOfProduct";
 import { useCurrrentSalesStore } from "../../../../store/currentSalesStore";
+import {
+  NAME_OF_LOCAL_STORAGE_CURRENT_METADATA,
+  NAME_OF_LOCAL_STORAGE_SALES,
+} from "../../constants/general";
 
-export const Summary = () => {
+export const Summary = ({ setValue }) => {
   const { isCurrentSalesModified } = useCurrrentSalesStore();
 
-  const listOfRecords = JSON.parse(localStorage.getItem("currentSales"));
+  const listOfRecords = JSON.parse(
+    localStorage.getItem(NAME_OF_LOCAL_STORAGE_SALES)
+  );
+  const productSaleMetadata = JSON.parse(
+    localStorage.getItem(NAME_OF_LOCAL_STORAGE_CURRENT_METADATA)
+  );
 
   const {
     totalKilos,
@@ -16,8 +26,8 @@ export const Summary = () => {
     totalMonto,
   } = calculatePriceOfProduct({
     listOfRecords,
-    price: 6.5,
-    containerWeight: 1.8,
+    price: Number(productSaleMetadata?.price ?? 0),
+    containerWeight: Number(productSaleMetadata?.containerWeight ?? 0),
   });
   const datos = [
     {
@@ -36,7 +46,15 @@ export const Summary = () => {
     { label: "Monto Total:", valor: { cantidad: totalMonto, unidad: "soles" } },
   ];
 
-  useEffect(() => {}, [isCurrentSalesModified]);
+  useEffect(() => {
+    setValue("summary", {
+      totalKilos,
+      totalCajas,
+      totalKilosCaja,
+      totalKilosNetos,
+      totalMonto,
+    });
+  }, [isCurrentSalesModified]);
 
   return (
     <div className="bg-slate-800 p-4 rounded-md min-w-[280px]  max-w-[300px] ">

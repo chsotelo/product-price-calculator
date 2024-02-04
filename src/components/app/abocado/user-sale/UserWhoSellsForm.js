@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "../../../general/inputs/Input";
 import { NAME_OF_LOCAL_STORAGE_USER_WHO_SELL } from "../../constants/general";
-
 const inputFields = [
   { type: "text", id: "DNI", placeholder: "DNI", name: "DNI" },
   { type: "text", id: "name", placeholder: "Nombre", name: "name" },
@@ -12,7 +11,6 @@ const inputFields = [
   { type: "number", id: "phone", placeholder: "Celular", name: "phone" },
   { type: "text", id: "lugar", placeholder: "Lugar de venta", name: "place" },
 ];
-
 export const UserWhoSellsForm = () => {
   const dataUserWhoShell = localStorage.getItem(
     NAME_OF_LOCAL_STORAGE_USER_WHO_SELL
@@ -42,7 +40,7 @@ export const UserWhoSellsForm = () => {
   return (
     <>
       <h3 className="mb-2">Datos Generales</h3>
-      <div className="min-h-8 h-auto grid gap-2 grid-flow-col w-full grid-cols-1 grid-rows-6 md:grid-cols-3 md:grid-rows-2 mb-10">
+      <div className="min-h-8 h-auto grid gap-4  w-full grid-cols-1 grid-rows-6 md:grid-cols-3 md:grid-rows-2 mb-10">
         {inputFields.map((field, index) => (
           <Input
             key={index}
@@ -51,6 +49,7 @@ export const UserWhoSellsForm = () => {
             placeholder={field.placeholder}
             name={field.name}
             register={register}
+            getValues={getValues}
           />
         ))}
       </div>

@@ -8,22 +8,49 @@ export const Input = ({
   placeholder,
   type,
   rest,
+  getValues,
+  required = false,
 }) => {
   const inputStyle = {
     paddingLeft: "0.5rem",
     color: "black",
     minHeight: "2rem",
-    // height: "2rem",
     width: "100%",
   };
+  const labelStyle = {
+    position: "absolute",
+    top: "-0.8rem",
+    left: "0.5rem",
+    fontSize: "0.75rem",
+    color: "white",
+    background: "black",
+    transition: "all 0.5s",
+    fontSize: "0.6rem",
+    padding: "0 0.5rem",
+  };
+
   return (
-    <input
-      className={` rounded-xl ${width} `}
-      placeholder={placeholder}
-      type={type}
-      style={{ ...inputStyle, ...(style ?? { style }) }}
-      {...rest}
-      {...register(name)}
-    />
+    <div className="relative">
+      {getValues && getValues(name) && (
+        <label
+          htmlFor={name}
+          style={labelStyle}
+          className="absolute rounded-lg"
+          onClick={() => inputRef.current.focus()}>
+          {placeholder}
+        </label>
+      )}
+      <input
+        className={` rounded-xl ${width} `}
+        placeholder={placeholder}
+        type={type}
+        max={type === "number" ? 100000 : undefined}
+        min={type === "number" ? 0 : undefined}
+        style={{ ...inputStyle, ...(style ?? { style }) }}
+        required={required}
+        {...rest}
+        {...register(name)}
+      />
+    </div>
   );
 };

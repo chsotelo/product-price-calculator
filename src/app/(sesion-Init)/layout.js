@@ -7,7 +7,7 @@ export default function SesionInitLayout({ children }) {
       <MainNavbar />
       <div className=" bg-slate-950 w-full">
         <MainHeader />
-        <div className="flex min-h-screen flex-col items-center  mx-4 py-7">
+        <div className="flex min-h-screen flex-col items-center py-7 mx-2 md:mx-4 ">
           {children}
         </div>
       </div>

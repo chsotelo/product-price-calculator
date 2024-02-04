@@ -1,27 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-const initialState = {
-  sales: [
-    {
-      id: 1,
-      typeProduct: "Primera" || "Segunda" || "Descarte",
-      pricePerKilo: 6.5,
-      kiloContainerUnit: 1.8,
-      finalGrossKilos: 100,
-      finalNumberOfContainers: 10,
-      subTotalAmount: 1000,
-      salesPlace: "Puywan",
-      items: [
-        {
-          id: 1,
-          finalGrossKilos: 100,
-          numberOfContainers: 10,
-        },
-      ],
-    },
-  ],
-};
-//primer nivel de store
+
 export const useSalesStore = create(
   persist(
     (set, get) => ({

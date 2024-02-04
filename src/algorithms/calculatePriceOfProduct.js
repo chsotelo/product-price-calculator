@@ -3,14 +3,16 @@ export const calculatePriceOfProduct = ({
   price,
   containerWeight,
 }) => {
-  const totalKilos = listOfRecords.reduce(
-    (acc, item) => acc + (parseFloat(item.kilos) || 0),
-    0
-  );
-  const totalCajas = listOfRecords.reduce(
-    (acc, item) => acc + (parseFloat(item.cajas) || 0),
-    0
-  );
+  const totalKilos =
+    listOfRecords?.reduce(
+      (acc, item) => acc + (parseFloat(item.kilos) || 0),
+      0
+    ) || 0;
+  const totalCajas =
+    listOfRecords?.reduce(
+      (acc, item) => acc + (parseFloat(item.cajas) || 0),
+      0
+    ) || 0;
 
   const totalKilosCaja = parseFloat(containerWeight) * totalCajas;
   const totalKilosNetos = totalKilos - totalKilosCaja;

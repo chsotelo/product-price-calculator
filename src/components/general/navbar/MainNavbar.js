@@ -28,7 +28,14 @@ const NavbarItem = ({ name, path }) => {
 
 const MainNavbar = () => {
   return (
-    <nav className="hidden md:block px-2 py-3 min-h-screen w-60 bg-slate-900">
+    <nav
+      className="hidden md:block px-2 py-3 min-h-screen w-60 bg-slate-900"
+      style={{
+        position: "sticky",
+        top: "0",
+        left: "0",
+        height: "100vh",
+      }}>
       <h2 className="p-10">LOGO</h2>
       <ul className="flex flex-col gap-2">
         {navbarItems.map((item, index) => (
