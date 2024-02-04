@@ -18,7 +18,7 @@ const navbarItems = [
 
 const NavbarItem = ({ name, path }) => {
   return (
-    <li className="m-1 w-80 hover:cursor-pointer hover:font-normal  bg-gradient-to-l rounded-xl font-extralight text-xl">
+    <li className="m-1 w-80 max-w-[224px] hover:cursor-pointer hover:font-normal  bg-gradient-to-l rounded-xl font-extralight text-xl">
       <Link className="mx-2" href={path}>
         {name}
       </Link>
@@ -29,7 +29,7 @@ const NavbarItem = ({ name, path }) => {
 const MainNavbar = () => {
   return (
     <nav
-      className="hidden md:block px-2 py-3 min-h-screen w-60 bg-slate-900"
+      className="hidden relative md:block px-2 py-3 min-h-screen w-60 bg-slate-900"
       style={{
         position: "sticky",
         top: "0",

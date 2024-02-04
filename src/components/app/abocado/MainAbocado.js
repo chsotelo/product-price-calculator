@@ -32,7 +32,7 @@ export const MainAbocado = () => {
   let listHistoryFromLocalStorage;
   let saleMetadataFromLocalStorage;
   let dataUserWhoShell;
-  const { addSales } = useSalesStore();
+  const { addSales, setIsUpdated } = useSalesStore();
   const [seeButton, setSeeButton] = useState(false);
   const { setCurrentSalesModified } = useCurrrentSalesStore();
   if (typeof window !== "undefined") {
@@ -54,6 +54,7 @@ export const MainAbocado = () => {
     watch,
     setValue,
     handleSubmit,
+    reset,
   } = useForm({
     defaultValues: {
       listOfRegisters: JSON.parse(listHistoryFromLocalStorage) ?? [
@@ -92,9 +93,12 @@ export const MainAbocado = () => {
       items: data.listOfRegisters,
     };
     addSales(dataToSave);
+    reset();
     localStorage.removeItem(NAME_OF_LOCAL_STORAGE_SALES);
     localStorage.removeItem(NAME_OF_LOCAL_STORAGE_CURRENT_METADATA);
     setCurrentSalesModified();
+    setValue("listOfRegisters", [{ kilos: "", cajas: "" }]);
+    setIsUpdated();
   };
 
   useEffect(() => {
@@ -195,10 +199,7 @@ export const MainAbocado = () => {
           <label>Confirmo que terminé de registrar</label>
         </span>
 
-        <Button
-          disabledStatus={!seeButton}
-          type="submit"
-          typeStyle={"tertiary"}>
+        <Button disabledStatus={!seeButton} type="submit" typeStyle={"primary"}>
           Registrar
         </Button>
       </div>
