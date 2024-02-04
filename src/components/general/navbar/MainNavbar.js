@@ -14,6 +14,10 @@ const navbarItems = [
     name: "Otros",
     path: "/others",
   },
+  {
+    name: "Salir",
+    path: "/",
+  },
 ];
 
 const NavbarItem = ({ name, path }) => {
