@@ -3,8 +3,6 @@ import { dbConnect } from "../../../backend/libs/db";
 import {
   createUser,
   getAllUsers,
-  getUser,
-  getUserByIdentification,
 } from "../../../backend/services/user/user.service";
 import { NextResponse } from "next/server";
 
@@ -22,7 +20,7 @@ export async function GET() {
 
     return NextResponse.json({
       status: 200,
-      data: "responsido",
+      data: response,
       message: "Users fetched successfully",
     });
   } catch (error) {

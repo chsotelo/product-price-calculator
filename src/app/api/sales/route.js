@@ -14,19 +14,19 @@ export async function GET() {
     if (!response) {
       return NextResponse.json({
         status: 404,
-        message: "No users found",
+        message: "No sales found",
         data: null,
       });
     }
 
     return NextResponse.json({
       status: 200,
-      data: "responsido",
-      message: "Places fetched successfully",
+      data: response,
+      message: "Sales fetched successfully",
     });
   } catch (error) {
     return NextResponse.json({
-      status: 500,
+      status: 400,
       message: error.message,
       data: null,
     });

@@ -12,12 +12,11 @@ export async function GET(request, { params }) {
     const { id } = params;
     let response;
     dbConnect();
-
-    if (id.lenght === 8) {
+    if (id.length === 8) {
       response = await getUserByIdentification({ identification: id });
+    } else {
+      response = await getUser({ userId: id });
     }
-
-    response = await getUser({ userId: id });
 
     return NextResponse.json({
       status: 200,

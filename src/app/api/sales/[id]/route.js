@@ -10,13 +10,15 @@ import { NextResponse } from "next/server";
 export async function GET(request, { params }) {
   try {
     const { id } = params;
-    const [_id, condition] = id.split("?");
+    const [_id, condition] = id.split("=");
+
     let response;
     dbConnect();
     if (condition === "userId") {
       response = await findSalesByUserId({ userId: _id });
+    } else {
+      response = await findSale({ saleId: _id });
     }
-    response = await findSale({ saleId: _id });
 
     if (!response) {
       return NextResponse.json({
