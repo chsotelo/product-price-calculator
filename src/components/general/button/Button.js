@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 export const Button = ({
   type = "button",
@@ -11,25 +11,38 @@ export const Button = ({
 
   switch (typeStyle) {
     case "primary":
-      buttonClasses += " bg-blue-500 text-white hover:bg-blue-600";
+      buttonClasses += ` bg-cyan-500 text-white hover:bg-cyan-600 ${
+        disabledStatus &&
+        "bg-cyan-800 hover:cursor-not-allowed hover:bg-cyan-1000"
+      }`;
       break;
     case "secondary":
-      buttonClasses += " bg-gray-500 text-white hover:bg-gray-600";
+      buttonClasses += ` bg-gray-500 text-white hover:bg-gray-600
+      ${
+        disabledStatus &&
+        " bg-gray-800 hover:cursor-not-allowed hover:bg-gray-1000"
+      }`;
+
       break;
     case "tertiary":
-      buttonClasses += " bg-green-500 text-white hover:bg-green-600";
+      buttonClasses += `bg-green-500 text-white hover:bg-green-600 
+      ${
+        disabledStatus &&
+        " bg-green-700 hover:cursor-not-allowed hover:bg-green-900"
+      }`;
       break;
     default:
-      buttonClasses += " bg-gray-500 text-white hover:bg-gray-600";
+      buttonClasses += ` bg-gray-500 text-white hover:bg-gray-600 
+      ${
+        disabledStatus &&
+        "bg-gray-700 hover:cursor-not-allowed hover:bg-gray-900"
+      }`;
   }
-
+  useEffect(() => {}, [disabledStatus]);
   return (
     <button
       type={type}
-      className={`${buttonClasses} ${
-        disabledStatus &&
-        "bg-cyan-700 hover:cursor-not-allowed hover:bg-cyan-900"
-      }`}
+      className={`${buttonClasses}`}
       disabled={disabledStatus}
       {...props}>
       {children}

@@ -7,7 +7,7 @@ import {
 } from "../../../../backend/services/user/user.service";
 import { NextResponse } from "next/server";
 
-export async function GET(request, { params }) {
+export async function GET({ params }) {
   try {
     const { id } = params;
     let response;
