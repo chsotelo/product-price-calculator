@@ -9,10 +9,10 @@ import {
 
 export async function POST(request) {
   try {
+    dbConnect();
     let user;
     let places = [];
     let sales = [];
-    dbConnect();
     const data = await request.json();
     const { userData, placeData } = data;
     const { _id: userId } = userData;
