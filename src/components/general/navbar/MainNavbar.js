@@ -1,35 +1,33 @@
-import Link from "next/link";
 import React from "react";
-
+import {
+  FaCalculator,
+  FaHome,
+  FaSignOutAlt,
+  FaTripadvisor,
+} from "react-icons/fa";
+import { NavbarItem } from "./NavBarItem";
 const navbarItems = [
   {
     name: "Home",
     path: "/home",
+    icon: <FaHome />,
   },
   {
-    name: "Calcular",
+    name: "Calculadora",
     path: "/abocado",
+    icon: <FaCalculator />,
   },
   {
     name: "Otros",
     path: "/others",
+    icon: <FaTripadvisor />,
   },
   {
     name: "Salir",
     path: "/",
+    icon: <FaSignOutAlt />,
   },
 ];
-
-const NavbarItem = ({ name, path }) => {
-  return (
-    <li className="m-1 w-80 max-w-[224px] hover:cursor-pointer hover:font-normal  bg-gradient-to-l rounded-xl font-extralight text-xl">
-      <Link className="mx-2" href={path}>
-        {name}
-      </Link>
-    </li>
-  );
-};
-
 const MainNavbar = () => {
   return (
     <nav
@@ -39,11 +37,18 @@ const MainNavbar = () => {
         top: "0",
         left: "0",
         height: "100vh",
+        // sombra al borde
+        boxShadow: "0 0 20px 0 rgba(0, 0, 0, 0.4)",
       }}>
       <h2 className="p-10">LOGO</h2>
       <ul className="flex flex-col gap-2">
         {navbarItems.map((item, index) => (
-          <NavbarItem key={index} name={item.name} path={item.path} />
+          <NavbarItem
+            key={index}
+            name={item.name}
+            path={item.path}
+            icon={item.icon}
+          />
         ))}
       </ul>
     </nav>

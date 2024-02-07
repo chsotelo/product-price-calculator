@@ -74,7 +74,7 @@ export const ItemCalculator = ({
         src={"/remove_trash.svg"}
         alt=""
         height={30}
-        className="hover:scale-110 transition duration-300 ease-in-out"
+        className="hover:scale-110 transition duration-300 ease-in-out hover:scale-0.1"
         width={30}
         style={{
           marginLeft: "1rem",

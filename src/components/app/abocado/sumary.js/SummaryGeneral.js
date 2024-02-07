@@ -207,7 +207,7 @@ export const SummaryGeneralItem = ({ sale, index }) => {
   return (
     <div
       key={sale.id}
-      className="bg-slate-800 p-4 rounded-md min-w-[280px] hover:scale-[1.01] hover:cursor-pointer">
+      className="bg-slate-800 p-4 rounded-md min-w-[280px] hover:scale-[1.01] hover:cursor-pointer with-box-shadow ">
       <h3 className="text-xs text-red-600 mb-1">
         REGISTRO {index} - {sale.typeProduct}{" "}
       </h3>

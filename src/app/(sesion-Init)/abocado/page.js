@@ -6,11 +6,11 @@ export default function AbocadoHome() {
   return (
     <main className="w-full">
       <div className="w-full flex justify-center pb-10">
-        <h2 className="text-xl">Calculadora de precio </h2>
+        <h2 className="text-3xl">Calculadora de precio 🥑</h2>
       </div>
-      <div className="mx-2">
+      <div className="mx-2 md:mx-10">
         <UserWhoSellsForm />
-        <section className="flex flex-col gap-4 lg:flex-row">
+        <section className="flex flex-col gap-4 lg:flex-row w-full justify-center justify-items-center">
           <MainAbocado />
           <div
             style={{

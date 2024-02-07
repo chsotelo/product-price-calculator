@@ -60,7 +60,7 @@ export const Summary = ({ setValue }) => {
   }, [isCurrentSalesModified]);
 
   return (
-    <div className="bg-slate-800 p-4 rounded-md min-w-[280px]  max-w-[300px] ">
+    <div className="bg-slate-800 p-4 rounded-md min-w-[280px]  max-w-[300px] with-box-shadow ">
       <h1 className="text-xl text-red-600">Resumen:</h1>
       {datos.map((item, index) => (
         <Fragment key={index}>

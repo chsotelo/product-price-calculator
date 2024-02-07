@@ -197,7 +197,7 @@ export const MainAbocado = () => {
           </section>
         </div>
         <Summary setValue={setValue} />
-        <div className="mt-6 flex items-center gap-2 flex-col ">
+        <div className="mt-6 flex items-center gap-2 flex-col  ">
           <span className="flex flex-row gap-2 w-full">
             <input
               type="checkbox"
