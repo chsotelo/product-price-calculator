@@ -8,6 +8,7 @@ export const Input = ({
   placeholder,
   type,
   rest,
+  onInput,
   getValues,
   required = false,
 }) => {
@@ -50,6 +51,7 @@ export const Input = ({
         required={required}
         {...rest}
         {...register(name)}
+        onInput={onInput}
       />
     </div>
   );

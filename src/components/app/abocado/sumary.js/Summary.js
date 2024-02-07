@@ -9,14 +9,17 @@ import {
 } from "../../constants/general";
 
 export const Summary = ({ setValue }) => {
+  let listOfRecords;
+  let productSaleMetadata;
   const { isCurrentSalesModified } = useCurrrentSalesStore();
-
-  const listOfRecords = JSON.parse(
-    localStorage.getItem(NAME_OF_LOCAL_STORAGE_SALES)
-  );
-  const productSaleMetadata = JSON.parse(
-    localStorage.getItem(NAME_OF_LOCAL_STORAGE_CURRENT_METADATA)
-  );
+  if (typeof window !== "undefined") {
+    listOfRecords = JSON.parse(
+      localStorage.getItem(NAME_OF_LOCAL_STORAGE_SALES)
+    );
+    productSaleMetadata = JSON.parse(
+      localStorage.getItem(NAME_OF_LOCAL_STORAGE_CURRENT_METADATA)
+    );
+  }
 
   const {
     totalKilos,

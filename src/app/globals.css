@@ -30,3 +30,25 @@ body {
     text-wrap: balance;
   }
 }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.succes-label {
+  color: #00ff00;
+}
+
+.error-label {
+  color: #ff0000;
+}
+
+.warning-label {
+  color: #ffcc00;
+}

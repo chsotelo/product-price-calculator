@@ -35,8 +35,8 @@ const userSchema = new Schema({
   },
   places: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "Place",
+      type: String,
+      required: false,
     },
   ],
   createAt: {

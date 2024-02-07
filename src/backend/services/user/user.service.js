@@ -35,6 +35,7 @@ const getUser = async ({ userId }) => {
 
 const createUser = async ({ data }) => {
   try {
+    console.log("data", data);
     const user = await User.findOne({
       identification: data.identification,
     }).exec();
@@ -45,9 +46,9 @@ const createUser = async ({ data }) => {
         "User already exists"
       );
     }
-
     const newUser = new User(data);
-    return await newUser.save();
+    const userSaved = await newUser.save();
+    return userSaved;
   } catch (error) {
     MongooseErrorFactory.handleMongooseError(error);
   }

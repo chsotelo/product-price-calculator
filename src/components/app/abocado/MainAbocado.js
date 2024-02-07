@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { ItemCalculator } from "./ItemCalculator";
 import Image from "next/image";
-import { get, useFieldArray, useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import {
   NAME_OF_LOCAL_STORAGE_CURRENT_METADATA,
   NAME_OF_LOCAL_STORAGE_SALES,
@@ -15,6 +15,8 @@ import { Summary } from "./sumary.js/Summary";
 import { Button } from "../../general/button/Button";
 import { useCurrrentSalesStore } from "../../../store/currentSalesStore";
 import { useSalesStore } from "../../../store/salesStore";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const optionsForSelect = [
   {
@@ -35,6 +37,7 @@ export const MainAbocado = () => {
   const { addSales, setIsUpdated } = useSalesStore();
   const [seeButton, setSeeButton] = useState(false);
   const { setCurrentSalesModified } = useCurrrentSalesStore();
+
   if (typeof window !== "undefined") {
     listHistoryFromLocalStorage = localStorage.getItem(
       NAME_OF_LOCAL_STORAGE_SALES
@@ -46,6 +49,7 @@ export const MainAbocado = () => {
       localStorage.getItem(NAME_OF_LOCAL_STORAGE_CURRENT_METADATA)
     );
   }
+
   const {
     control,
     formState: { errors },
@@ -60,11 +64,12 @@ export const MainAbocado = () => {
       listOfRegisters: JSON.parse(listHistoryFromLocalStorage) ?? [
         { kilos: "", cajas: "" },
       ],
-      calibre: saleMetadataFromLocalStorage?.calibre ?? "",
+      calibre: saleMetadataFromLocalStorage?.calibre ?? "Selecciona una opción",
       price: saleMetadataFromLocalStorage?.price ?? "",
       containerWeight: saleMetadataFromLocalStorage?.containerWeight ?? "",
     },
   });
+
   const {
     fields: listOfRegistersFields,
     append,
@@ -88,9 +93,8 @@ export const MainAbocado = () => {
       typeProduct: data.calibre,
       place,
       pricePerKilo: data.price,
-      conyainerWeight: data.containerWeight,
+      containerWeight: data.containerWeight,
       summary: data.summary,
-      salesPlace: "Puywan",
       items: data.listOfRegisters,
     };
     addSales(dataToSave);
@@ -118,93 +122,113 @@ export const MainAbocado = () => {
   }, [calibre, price, containerWeight]);
 
   return (
-    <form
-      className="max-w-[340px] bg-slate-900 p-3 rounded-lg min-w-[320px]"
-      onSubmit={handleSubmit(handleOnSubmit)}>
-      <div className="text-sm mb-3">
-        <div className="flex gap-4 flex-col max-w-[320px] ">
-          <h1 className="text-xl text-red-500 text-center">Venta actual</h1>
-          <h2></h2>
-          <Select
-            options={optionsForSelect}
-            name="calibre"
-            register={register}
-            required={true}
-          />
-          <Input
-            type="text"
-            id="price"
-            placeholder="Precio"
-            name="price"
-            register={register}
-            getValues={getValues}
-            required={true}
-          />
-          <Input
-            type="text"
-            id="containerWeight"
-            placeholder="Peso de caja"
-            name="containerWeight"
-            register={register}
-            getValues={getValues}
-            required={true}
-          />
-        </div>
-        <section>
-          <h2 className="text-xl mt-3 text-red-500">Registro:</h2>
-          <div className="flex gap-2 mb-2 ">
-            <label className="w-32">Kilos totales:</label>
-            <label className="w-32">Cantidad de cajas:</label>
-          </div>
-          <div className="flex flex-col gap-2 ">
-            {listOfRegistersFields.map((item, index) => {
-              return (
-                <ItemCalculator
-                  key={item.id}
-                  idItem={item.id}
-                  index={index}
-                  register={register}
-                  remove={remove}
-                  update={update}
-                  item={item}
-                  setValue={setValue}
-                  getValues={getValues}
-                  watch={watch}
-                />
-              );
-            })}
-          </div>
-          <div className="mt-4 w">
-            <Image
-              src={"/add.png"}
-              alt=""
-              height={30}
-              width={30}
-              className="rounded-full cursor-pointer hover:scale-110 transition duration-300 ease-in-out"
-              onClick={() =>
-                append({
-                  kilos: "",
-                  cajas: "",
-                })
-              }
+    <>
+      <form
+        className="max-w-[340px] bg-slate-900 p-3 rounded-lg min-w-[320px]"
+        onSubmit={handleSubmit(handleOnSubmit)}>
+        <div className="text-sm mb-3">
+          <div className="flex gap-4 flex-col max-w-[320px] ">
+            <h1 className="text-xl text-red-500 text-center">Venta actual</h1>
+            <h2></h2>
+            <Select
+              options={optionsForSelect}
+              name="calibre"
+              register={register}
+              required={true}
+            />
+            <Input
+              type="text"
+              id="price"
+              placeholder="Precio"
+              name="price"
+              register={register}
+              getValues={getValues}
+              required={true}
+            />
+            <Input
+              type="text"
+              id="containerWeight"
+              placeholder="Peso de caja"
+              name="containerWeight"
+              register={register}
+              getValues={getValues}
+              required={true}
             />
           </div>
-        </section>
-      </div>
-      <Summary setValue={setValue} />
-      <div className="mt-6 flex items-center gap-2 flex-col ">
-        <span className="flex flex-row gap-2 w-full">
-          <input
-            type="checkbox"
-            onChange={(e) => setSeeButton(e.target.checked)}
-          />
-          <label>Confirmo que terminé de registrar</label>
-        </span>
+          <section>
+            <h2 className="text-xl mt-3 text-red-500">Registro:</h2>
+            <div className="flex gap-2 mb-2 ">
+              <label className="w-32">Kilos totales:</label>
+              <label className="w-32">Cantidad de cajas:</label>
+            </div>
+            <div className="flex flex-col gap-2 ">
+              {listOfRegistersFields.map((item, index) => {
+                return (
+                  <ItemCalculator
+                    key={item.id}
+                    idItem={item.id}
+                    index={index}
+                    register={register}
+                    remove={remove}
+                    update={update}
+                    item={item}
+                    setValue={setValue}
+                    getValues={getValues}
+                    watch={watch}
+                  />
+                );
+              })}
+            </div>
+            <div className="mt-4 w">
+              <Image
+                src={"/add.png"}
+                alt=""
+                height={30}
+                width={30}
+                className="rounded-full cursor-pointer hover:scale-110 transition duration-300 ease-in-out"
+                onClick={() =>
+                  append({
+                    kilos: "",
+                    cajas: "",
+                  })
+                }
+              />
+            </div>
+          </section>
+        </div>
+        <Summary setValue={setValue} />
+        <div className="mt-6 flex items-center gap-2 flex-col ">
+          <span className="flex flex-row gap-2 w-full">
+            <input
+              type="checkbox"
+              onChange={(e) => setSeeButton(e.target.checked)}
+            />
+            <label>Confirmo que terminé de registrar</label>
+          </span>
 
-        <Button disabledStatus={!seeButton} type="submit" typeStyle={"primary"}>
-          Registrar
-        </Button>
-      </div>
-    </form>
+          <Button
+            disabledStatus={!seeButton}
+            type="submit"
+            typeStyle={"primary"}>
+            Registrar
+          </Button>
+        </div>
+      </form>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        style={{
+          width: "250px",
+        }}
+      />
+    </>
   );
 };

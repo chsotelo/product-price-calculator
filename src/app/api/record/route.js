@@ -14,10 +14,14 @@ export async function POST(request) {
     let places = [];
     let sales = [];
     const data = await request.json();
-    const { userData, placeData } = data;
+
+    const { userData, salesData } = data;
+
     const { _id: userId } = userData;
 
     if (userId) {
+      console.log("actualizando", userId);
+
       const userRecovered = await getUser({ userId });
       const dataForUpdate = {
         ...userRecovered,
@@ -25,20 +29,22 @@ export async function POST(request) {
       };
       user = await updateUser({ userId, data: dataForUpdate });
     } else {
+      console.log("creando");
       user = await createUser({ data: userData });
     }
+    console.log("user", user);
 
-    Promise.all(
-      placeData.map(async (sale) => {
-        const newDataSale = {
-          ...sale,
-          userId: user._id,
-        };
-        places.push(sale.place);
-        const newSale = await createSale({ sale: newDataSale });
-        sales.push(newSale);
-      })
-    );
+    const salesPromises = salesData.map(async (sale) => {
+      const newDataSale = {
+        ...sale,
+        userId: user._id,
+      };
+      places.push(sale.place);
+      const newSale = await createSale({ sale: newDataSale });
+      return newSale;
+    });
+
+    sales = await Promise.all(salesPromises);
 
     return NextResponse.json({
       status: 201,

@@ -25,7 +25,7 @@ export const Button = ({
 
       break;
     case "tertiary":
-      buttonClasses += `bg-green-500 text-white hover:bg-green-600 
+      buttonClasses += ` bg-green-500 text-white hover:bg-green-600 
       ${
         disabledStatus &&
         " bg-green-700 hover:cursor-not-allowed hover:bg-green-900"

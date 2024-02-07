@@ -1,5 +1,6 @@
+"use client";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 export const useSalesStore = create(
   persist(
@@ -71,7 +72,8 @@ export const useSalesStore = create(
 
     {
       name: "sales-store",
-      getStorage: () => localStorage,
+      storage: createJSONStorage(() => sessionStorage),
+      skipHydration: true,
     }
   )
 );
