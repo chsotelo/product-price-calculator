@@ -30,8 +30,6 @@ export const SummaryGeneral = () => {
   const [seeButtonSubmit, setSeeButtonSubmit] = useState(false);
   const [seeButtonClear, setSeeButtonClear] = useState(false);
 
-  // console.log("sales", sales);
-  // console.log("userW", userWhoSell);
   const submitData = async () => {
     const salesData = sales.map((sale) => {
       return {
@@ -52,6 +50,7 @@ export const SummaryGeneral = () => {
       };
     });
     const userData = {
+      _id: userWhoSell._id ?? null, // requerido
       username: {
         firstname: userWhoSell.name, // requerido
         lastname: userWhoSell.lastName, // requerido

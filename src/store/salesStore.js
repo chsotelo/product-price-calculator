@@ -72,8 +72,6 @@ export const useSalesStore = create(
 
     {
       name: "sales-store",
-      storage: createJSONStorage(() => sessionStorage),
-      skipHydration: true,
     }
   )
 );

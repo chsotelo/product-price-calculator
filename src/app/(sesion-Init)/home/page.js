@@ -1,10 +1,15 @@
-import { FaCalculator } from "react-icons/fa";
+import { FaCalculator, FaSearch } from "react-icons/fa";
 import { FunctionalityCard } from "../../../components/cards/FunctionalityCard";
 const functionalitiesItems = [
   {
     label: "Calculadora de precio",
     icon: <FaCalculator />,
     path: "/abocado",
+  },
+  {
+    label: "Buscar un registro de venta",
+    icon: <FaSearch />,
+    path: "/search-sale",
   },
 ];
 
@@ -21,7 +26,7 @@ export default function Homepage() {
         </p>
         <section className="mt-10">
           <h2 className="text-red-500 text-xl ">Funcionalidades</h2>
-          <div className="mt-4 flex-row flex-wrap">
+          <div className="mt-4 flex flex-row gap-6 flex-wrap ">
             {functionalitiesItems.map((item, index) => {
               return (
                 <FunctionalityCard

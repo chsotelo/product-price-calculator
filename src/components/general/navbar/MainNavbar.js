@@ -2,6 +2,7 @@ import React from "react";
 import {
   FaCalculator,
   FaHome,
+  FaSearch,
   FaSignOutAlt,
   FaTripadvisor,
 } from "react-icons/fa";
@@ -16,6 +17,11 @@ const navbarItems = [
     name: "Calculadora",
     path: "/abocado",
     icon: <FaCalculator />,
+  },
+  {
+    name: "Buscar registro",
+    path: "/search-sale",
+    icon: <FaSearch />,
   },
   {
     name: "Otros",

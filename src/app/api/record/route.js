@@ -13,6 +13,7 @@ export async function POST(request) {
     let user;
     let places = [];
     let sales = [];
+    const groupId = crypto.randomUUID();
     const data = await request.json();
 
     const { userData, salesData } = data;
@@ -20,8 +21,6 @@ export async function POST(request) {
     const { _id: userId } = userData;
 
     if (userId) {
-      console.log("actualizando", userId);
-
       const userRecovered = await getUser({ userId });
       const dataForUpdate = {
         ...userRecovered,
@@ -29,19 +28,25 @@ export async function POST(request) {
       };
       user = await updateUser({ userId, data: dataForUpdate });
     } else {
-      console.log("creando");
       user = await createUser({ data: userData });
     }
-    console.log("user", user);
-
+    console.log({ user });
     const salesPromises = salesData.map(async (sale) => {
       const newDataSale = {
         ...sale,
         userId: user._id,
+        groupId,
       };
       places.push(sale.place);
       const newSale = await createSale({ sale: newDataSale });
       return newSale;
+    });
+
+    const newArrayUserPlaces = [...new Set(user.places.concat(places))];
+
+    await updateUser({
+      userId: user._id,
+      data: { places: newArrayUserPlaces },
     });
 
     sales = await Promise.all(salesPromises);

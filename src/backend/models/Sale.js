@@ -5,6 +5,10 @@ const saleSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  groupId: {
+    type: String,
+    required: true,
+  },
   place: {
     type: String,
     required: true,

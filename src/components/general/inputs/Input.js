@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 export const Input = ({
@@ -8,7 +9,7 @@ export const Input = ({
   placeholder,
   type,
   rest,
-  onInput,
+  onInput = undefined,
   getValues,
   required = false,
 }) => {

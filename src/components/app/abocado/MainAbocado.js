@@ -15,8 +15,6 @@ import { Summary } from "./sumary.js/Summary";
 import { Button } from "../../general/button/Button";
 import { useCurrrentSalesStore } from "../../../store/currentSalesStore";
 import { useSalesStore } from "../../../store/salesStore";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const optionsForSelect = [
   {
@@ -214,21 +212,6 @@ export const MainAbocado = () => {
           </Button>
         </div>
       </form>
-      <ToastContainer
-        position="bottom-left"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        style={{
-          width: "250px",
-        }}
-      />
     </>
   );
 };

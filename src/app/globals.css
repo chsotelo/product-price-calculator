@@ -70,5 +70,6 @@ body {
   svg {
     width: 70px;
     height: 70px;
+    fill: chocolate;
   }
 }
