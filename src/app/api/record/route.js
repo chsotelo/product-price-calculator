@@ -16,6 +16,7 @@ export async function POST(request) {
     const groupId = crypto.randomUUID();
     const data = await request.json();
 
+    console.log({ data });
     const { userData, salesData } = data;
 
     const { _id: userId } = userData;
@@ -31,6 +32,7 @@ export async function POST(request) {
       user = await createUser({ data: userData });
     }
     console.log({ user });
+
     const salesPromises = salesData.map(async (sale) => {
       const newDataSale = {
         ...sale,

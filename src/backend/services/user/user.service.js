@@ -1,5 +1,6 @@
 import User from "../../models/User";
 import { MongooseErrorFactory } from "../../errors/MongooseFactory";
+import { Types } from "mongoose";
 
 const getAllUsers = async () => {
   try {
@@ -27,7 +28,7 @@ const getUserByIdentification = async ({ identification }) => {
 
 const getUser = async ({ userId }) => {
   try {
-    return await User.findById(userId).exec();
+    return await User.findById(userId);
   } catch (error) {
     MongooseErrorFactory.handleMongooseError(error);
   }
@@ -45,9 +46,11 @@ const createUser = async ({ data }) => {
         "User already exists"
       );
     }
-    const newUser = new User(data);
+    const idGenerate = new Types.ObjectId();
 
-    return await newUser.save();
+    const newUser = new User({ ...data, _id: idGenerate });
+    const result = await newUser.save();
+    return result;
   } catch (error) {
     MongooseErrorFactory.handleMongooseError(error);
   }

@@ -4,6 +4,7 @@ const saleSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,
     ref: "User",
+    require: true,
   },
   groupId: {
     type: String,

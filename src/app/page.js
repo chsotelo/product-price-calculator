@@ -16,11 +16,10 @@ export default function RootMain() {
           }}>
           <div className="container mx-auto text-center">
             <h1 className="text-5xl font-bold mb-6">
-              Descubre el Mundo de las Paltas
+              Descubre nuestra calculadora
             </h1>
             <p className="text-lg">
-              Explora nuestra calculadora de precios para obtener el costo real
-              de las deliciosas paltas.
+              Explora nuestra calculadora y agiliza tus cálculos
             </p>
             <Link
               href="/home"
@@ -42,11 +41,6 @@ export default function RootMain() {
               perdurable y realiza cálculos rápidos y precisos para asegurarte
               de obtener el mejor precio por kilo.
             </p>
-            <Link
-              href="/home"
-              className="mt-8 inline-block bg-white text-green-500 font-bold py-2 px-6 rounded-full transition duration-300 hover:bg-green-700 hover:text-white">
-              ¡Comienza Ahora!
-            </Link>
           </div>
         </section>
 

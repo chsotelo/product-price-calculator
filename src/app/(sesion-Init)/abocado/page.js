@@ -10,7 +10,7 @@ export default function AbocadoHome() {
       </div>
       <div className="mx-2 md:mx-10">
         <UserWhoSellsForm />
-        <section className="flex flex-col gap-4 lg:flex-row w-full justify-center justify-items-center">
+        <section className="flex flex-col gap-4 lg:flex-row w-full justify-center justify-items-center ">
           <MainAbocado />
           <div
             style={{
@@ -19,7 +19,7 @@ export default function AbocadoHome() {
               display: "flex",
               flexDirection: "column",
             }}
-            className="  bg-slate-900 p-3 rounded-xl ">
+            className="  bg-slate-900 p-3 rounded-xl flex-row">
             <h2 className="text-red-500 text-xl text-center">
               Historial de registros
             </h2>

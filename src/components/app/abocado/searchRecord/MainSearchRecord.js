@@ -11,9 +11,6 @@ export const MainSearchRecord = () => {
   const [userSearch, setUserSearch] = useState(null);
   const [searchSales, setSearchSales] = useState(null);
 
-  console.log(searchSales);
-  console.log({ userSearch });
-
   const searchRecord = async (e) => {
     setUserSearch(null);
     setSearchSales(null);
@@ -28,7 +25,6 @@ export const MainSearchRecord = () => {
           const { data: dataSales } = await get(
             `/sales/${data.data._id}=userId`
           );
-          console.log("dataSales", dataSales.data);
 
           setSearchSales(sortRecordsByDate({ records: dataSales.data }));
           dataSales?.status === (200 || 201) &&
