@@ -21,8 +21,8 @@ export default function Homepage() {
       </div>
       <div className="mx-2 md:mx-10">
         <p className="">
-          ℹ️ Esta es que nos sirve para obtener el precio del producto de manera
-          automatica, precisa, perdurable y segura.
+          ℹ️ Esta servicio nos sirve para obtener el precio del producto de
+          manera automatica, precisa, perdurable y segura.
         </p>
         <section className="mt-10">
           <h2 className="text-red-500 text-xl ">Funcionalidades</h2>
