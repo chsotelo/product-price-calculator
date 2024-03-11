@@ -37,14 +37,13 @@ export const MainAbocado = () => {
   const { setCurrentSalesModified } = useCurrrentSalesStore();
 
   if (typeof window !== "undefined") {
-    listHistoryFromLocalStorage = localStorage.getItem(
-      NAME_OF_LOCAL_STORAGE_SALES
-    );
+    listHistoryFromLocalStorage =
+      localStorage.getItem(NAME_OF_LOCAL_STORAGE_SALES) ?? "[]";
     dataUserWhoShell = JSON.parse(
-      localStorage?.getItem(NAME_OF_LOCAL_STORAGE_USER_WHO_SELL)
+      localStorage?.getItem(NAME_OF_LOCAL_STORAGE_USER_WHO_SELL) ?? "{}"
     );
     saleMetadataFromLocalStorage = JSON.parse(
-      localStorage.getItem(NAME_OF_LOCAL_STORAGE_CURRENT_METADATA)
+      localStorage.getItem(NAME_OF_LOCAL_STORAGE_CURRENT_METADATA) ?? "{}"
     );
   }
 

@@ -1,3 +1,4 @@
+"use client";
 import { MainAbocado } from "../../../components/app/abocado/MainAbocado";
 import { SummaryGeneral } from "../../../components/app/abocado/sumary.js/SummaryGeneral";
 import { UserWhoSellsForm } from "../../../components/app/abocado/user-sale/UserWhoSellsForm";

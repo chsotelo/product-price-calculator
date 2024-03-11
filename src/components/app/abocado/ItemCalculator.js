@@ -19,12 +19,8 @@ export const ItemCalculator = ({
   idItem,
 }) => {
   const { setCurrentSalesModified } = useCurrrentSalesStore();
-  let listHistoryFromLocalStorage;
-  if (typeof window !== "undefined") {
-    listHistoryFromLocalStorage = localStorage.getItem(
-      NAME_OF_LOCAL_STORAGE_SALES
-    );
-  }
+  let listHistoryFromLocalStorage =
+    localStorage.getItem(NAME_OF_LOCAL_STORAGE_SALES) ?? "[]";
 
   const [kilos, cajas] = watch([
     `listOfRegisters.${index}.kilos`,

@@ -21,10 +21,8 @@ export const SummaryGeneral = () => {
     useSalesStore();
   const { isEdited } = useUpdateEventStore();
 
-  if (typeof window !== "undefined") {
-    userWhoSell = JSON.parse(localStorage.getItem("userWhoSell"));
-    // console.log("userWhoSell", userWhoSell);
-  }
+  userWhoSell = localStorage.getItem("userWhoSell") ?? "{}";
+  // console.log("userWhoSell", userWhoSell);
 
   const { totalKilos, totalCajas, totalMonto } = getCalculateSummary();
   const [seeButtonSubmit, setSeeButtonSubmit] = useState(false);
@@ -49,6 +47,7 @@ export const SummaryGeneral = () => {
         totalAmount: sale.summary.totalMonto, // requerido
       };
     });
+    userWhoSell = JSON.parse(userWhoSell);
     const userData = {
       _id: userWhoSell._id ?? null, // requerido
       username: {
