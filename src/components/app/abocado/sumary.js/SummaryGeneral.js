@@ -21,14 +21,17 @@ export const SummaryGeneral = () => {
     useSalesStore();
   const { isEdited } = useUpdateEventStore();
 
-  userWhoSell = localStorage.getItem("userWhoSell") ?? "{}";
-  // console.log("userWhoSell", userWhoSell);
+  if (typeof window !== "undefined") {
+    userWhoSell = localStorage.getItem("userWhoSell") ?? "{}";
+    // console.log("userWhoSell", userWhoSell);
+  }
 
   const { totalKilos, totalCajas, totalMonto } = getCalculateSummary();
   const [seeButtonSubmit, setSeeButtonSubmit] = useState(false);
   const [seeButtonClear, setSeeButtonClear] = useState(false);
 
   const submitData = async () => {
+    userWhoSell = JSON.parse(userWhoSell ?? "{}");
     const salesData = sales.map((sale) => {
       return {
         place: sale.place, // requerido
@@ -47,7 +50,6 @@ export const SummaryGeneral = () => {
         totalAmount: sale.summary.totalMonto, // requerido
       };
     });
-    userWhoSell = JSON.parse(userWhoSell ?? "{}");
     const userData = {
       _id: userWhoSell._id ?? null, // requerido
       username: {

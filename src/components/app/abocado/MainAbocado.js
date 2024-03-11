@@ -29,21 +29,24 @@ const optionsForSelect = [
 ];
 
 export const MainAbocado = () => {
-  let listHistoryFromLocalStorage;
-  let saleMetadataFromLocalStorage;
-  let dataUserWhoShell;
+  let listHistoryFromLocalStorage = null;
+  let saleMetadataFromLocalStorage = null;
+  let dataUserWhoShell = null;
   const { addSales, setIsUpdated } = useSalesStore();
   const [seeButton, setSeeButton] = useState(false);
   const { setCurrentSalesModified } = useCurrrentSalesStore();
 
-  listHistoryFromLocalStorage =
-    localStorage.getItem(NAME_OF_LOCAL_STORAGE_SALES) ?? null;
-  dataUserWhoShell = JSON.parse(
-    localStorage?.getItem(NAME_OF_LOCAL_STORAGE_USER_WHO_SELL) ?? null
-  );
-  saleMetadataFromLocalStorage = JSON.parse(
-    localStorage.getItem(NAME_OF_LOCAL_STORAGE_CURRENT_METADATA) ?? null
-  );
+  if (typeof window !== "undefined") {
+    listHistoryFromLocalStorage = localStorage.getItem(
+      NAME_OF_LOCAL_STORAGE_SALES
+    );
+    dataUserWhoShell = JSON.parse(
+      localStorage?.getItem(NAME_OF_LOCAL_STORAGE_USER_WHO_SELL)
+    );
+    saleMetadataFromLocalStorage = JSON.parse(
+      localStorage.getItem(NAME_OF_LOCAL_STORAGE_CURRENT_METADATA)
+    );
+  }
 
   const {
     control,
