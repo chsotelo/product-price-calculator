@@ -36,16 +36,14 @@ export const MainAbocado = () => {
   const [seeButton, setSeeButton] = useState(false);
   const { setCurrentSalesModified } = useCurrrentSalesStore();
 
-  if (typeof window !== "undefined") {
-    listHistoryFromLocalStorage =
-      localStorage.getItem(NAME_OF_LOCAL_STORAGE_SALES) ?? "[]";
-    dataUserWhoShell = JSON.parse(
-      localStorage?.getItem(NAME_OF_LOCAL_STORAGE_USER_WHO_SELL) ?? "{}"
-    );
-    saleMetadataFromLocalStorage = JSON.parse(
-      localStorage.getItem(NAME_OF_LOCAL_STORAGE_CURRENT_METADATA) ?? "{}"
-    );
-  }
+  listHistoryFromLocalStorage =
+    localStorage.getItem(NAME_OF_LOCAL_STORAGE_SALES) ?? null;
+  dataUserWhoShell = JSON.parse(
+    localStorage?.getItem(NAME_OF_LOCAL_STORAGE_USER_WHO_SELL) ?? null
+  );
+  saleMetadataFromLocalStorage = JSON.parse(
+    localStorage.getItem(NAME_OF_LOCAL_STORAGE_CURRENT_METADATA) ?? null
+  );
 
   const {
     control,

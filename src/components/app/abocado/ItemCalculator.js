@@ -20,7 +20,8 @@ export const ItemCalculator = ({
 }) => {
   const { setCurrentSalesModified } = useCurrrentSalesStore();
   let listHistoryFromLocalStorage =
-    localStorage.getItem(NAME_OF_LOCAL_STORAGE_SALES) ?? "[]";
+    localStorage.getItem(NAME_OF_LOCAL_STORAGE_SALES) ?? null;
+  // console.log(localStorage.getItem(NAME_OF_LOCAL_STORAGE_SALES));
 
   const [kilos, cajas] = watch([
     `listOfRegisters.${index}.kilos`,
@@ -35,7 +36,7 @@ export const ItemCalculator = ({
   }, []);
 
   const id = getValues(`listOfRegisters.${index}.id`);
-  const values = getValues("listOfRegisters");
+  const values = getValues("listOfRegisters") ?? [];
 
   useEffect(() => {
     const isArrayEqualx = areArraysOfObjectsEqual(

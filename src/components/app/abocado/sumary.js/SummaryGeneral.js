@@ -47,7 +47,7 @@ export const SummaryGeneral = () => {
         totalAmount: sale.summary.totalMonto, // requerido
       };
     });
-    userWhoSell = JSON.parse(userWhoSell);
+    userWhoSell = JSON.parse(userWhoSell ?? "{}");
     const userData = {
       _id: userWhoSell._id ?? null, // requerido
       username: {

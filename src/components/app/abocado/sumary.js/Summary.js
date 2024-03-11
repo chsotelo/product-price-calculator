@@ -14,10 +14,10 @@ export const Summary = ({ setValue }) => {
   const { isCurrentSalesModified } = useCurrrentSalesStore();
   if (typeof window !== "undefined") {
     listOfRecords = JSON.parse(
-      localStorage.getItem(NAME_OF_LOCAL_STORAGE_SALES) ?? "[]"
+      localStorage.getItem(NAME_OF_LOCAL_STORAGE_SALES) ?? null
     );
     productSaleMetadata = JSON.parse(
-      localStorage.getItem(NAME_OF_LOCAL_STORAGE_CURRENT_METADATA) ?? "{}"
+      localStorage.getItem(NAME_OF_LOCAL_STORAGE_CURRENT_METADATA) ?? null
     );
   }
 

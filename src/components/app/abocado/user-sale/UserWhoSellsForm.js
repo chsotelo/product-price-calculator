@@ -38,7 +38,7 @@ export const UserWhoSellsForm = () => {
   let dataUserWhoShell;
   if (typeof window !== "undefined") {
     dataUserWhoShell = JSON.parse(
-      localStorage.getItem(NAME_OF_LOCAL_STORAGE_USER_WHO_SELL) ?? "{}"
+      localStorage.getItem(NAME_OF_LOCAL_STORAGE_USER_WHO_SELL) ?? null
     );
   }
   const { setIsEdited } = useUpdateEventStore();
