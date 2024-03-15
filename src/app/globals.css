@@ -23,6 +23,7 @@ a {
 body {
   color: rgb(var(--foreground-rgb));
   background-color: #001929;
+  min-height: 100vh;
 }
 
 @layer utilities {

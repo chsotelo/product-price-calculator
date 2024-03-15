@@ -1,5 +1,4 @@
-"use client";
-import React from "react";
+import React, { useRef } from "react";
 
 export const Input = ({
   width = "w-32",
@@ -13,6 +12,8 @@ export const Input = ({
   getValues,
   required = false,
 }) => {
+  const inputRef = useRef(null); // Definir la referencia inputRef
+
   const inputStyle = {
     paddingLeft: "0.5rem",
     color: "black",
@@ -33,17 +34,17 @@ export const Input = ({
 
   return (
     <div className="relative">
-      {getValues && getValues(name) && (
-        <label
-          htmlFor={name}
-          style={labelStyle}
-          className="absolute rounded-lg"
-          onClick={() => inputRef.current.focus()}>
-          {placeholder}
-        </label>
-      )}
+      <label
+        htmlFor={name ?? placeholder}
+        style={labelStyle}
+        className="absolute rounded-lg"
+        onClick={() => inputRef.current.focus()}>
+        {placeholder ?? name}
+      </label>
+
       <input
-        className={` rounded-xl ${width} `}
+        ref={inputRef} // Asignar la referencia inputRef al input
+        className={`rounded-xl ${width}`}
         placeholder={placeholder}
         type={type}
         max={type === "number" ? 100000 : undefined}

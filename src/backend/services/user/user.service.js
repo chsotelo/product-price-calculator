@@ -62,18 +62,13 @@ const updateUser = async ({ userId, data }) => {
       identification: data.identification,
     }).exec();
 
-    if (!user) {
-      throw MongooseErrorFactory.createError(
-        "user_not_found",
-        "User not found"
-      );
+    if (user) {
+      return await User.findByIdAndUpdate(
+        userId,
+        { $set: data },
+        { new: true }
+      ).exec();
     }
-
-    return await User.findByIdAndUpdate(
-      userId,
-      { $set: data },
-      { new: true }
-    ).exec();
   } catch (error) {
     MongooseErrorFactory.handleMongooseError(error);
   }

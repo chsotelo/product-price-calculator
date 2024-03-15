@@ -108,7 +108,7 @@ export const UserWhoSellsForm = () => {
     <>
       <h3 className="mb-2">Datos Generales</h3>
       <div className="min-h-8 h-auto grid gap-4  w-full grid-cols-1 grid-rows-6 md:grid-cols-3 md:grid-rows-2 mb-10">
-        {inputFields.map((field, index) => (
+        {inputFields?.map((field, index) => (
           <Input
             key={index}
             onInput={field.name === "DNI" ? onInputHandleChange : undefined}

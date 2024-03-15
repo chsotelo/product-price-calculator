@@ -31,55 +31,60 @@ export const SummaryGeneral = () => {
   const [seeButtonClear, setSeeButtonClear] = useState(false);
 
   const submitData = async () => {
-    userWhoSell = JSON.parse(userWhoSell ?? "{}");
-    const salesData = sales.map((sale) => {
-      return {
-        place: sale.place, // requerido
-        caliber: {
-          name: sale.typeProduct, // requerido
-          denomination: typeProduct.filter(
-            (type) => type.label === sale.typeProduct
-          )[0].denomination, // requerido
+    try {
+      userWhoSell = JSON.parse(userWhoSell ?? "{}");
+      const salesData = sales.map((sale) => {
+        return {
+          place: sale.place, // requerido
+          caliber: {
+            name: sale.typeProduct, // requerido
+            denomination: typeProduct.filter(
+              (type) => type.label === sale.typeProduct
+            )[0].denomination, // requerido
+          },
+          records: sale.items, // array mixto
+          price: sale.pricePerKilo, // requerido
+          quantityOfContainers: sale.summary.totalCajas, // requerido
+          boxWeight: sale.containerWeight, // requerido
+          grossWeight: sale.summary.totalKilos, // requerido
+          netWeight: sale.summary.totalKilosNetos, // requerido
+          totalAmount: sale.summary.totalMonto, // requerido
+        };
+      });
+      const userData = {
+        _id: userWhoSell._id ?? null, // requerido
+        username: {
+          firstname: userWhoSell.name, // requerido
+          lastname: userWhoSell.lastName, // requerido
         },
-        records: sale.items, // array mixto
-        price: sale.pricePerKilo, // requerido
-        quantityOfContainers: sale.summary.totalCajas, // requerido
-        boxWeight: sale.containerWeight, // requerido
-        grossWeight: sale.summary.totalKilos, // requerido
-        netWeight: sale.summary.totalKilosNetos, // requerido
-        totalAmount: sale.summary.totalMonto, // requerido
+        phoneNumber: userWhoSell.phone, // requerido
+        identification: userWhoSell.DNI, // requerido
+        email: userWhoSell.email,
+        places: [userWhoSell.place],
       };
-    });
-    const userData = {
-      _id: userWhoSell._id ?? null, // requerido
-      username: {
-        firstname: userWhoSell.name, // requerido
-        lastname: userWhoSell.lastName, // requerido
-      },
-      phoneNumber: userWhoSell.phone, // requerido
-      identification: userWhoSell.DNI, // requerido
-      email: userWhoSell.email,
-      places: [userWhoSell.place],
-    };
-    const dataForSubmit = {
-      salesData,
-      userData,
-    };
-    const response = await post("/record", dataForSubmit);
-    if (response.status === (200 || 201)) {
-      toast.success("Datos enviados con exito");
-      resetSales();
-      localStorage.removeItem(NAME_OF_LOCAL_STORAGE_USER_WHO_SELL);
-      localStorage.removeItem(NAME_OF_LOCAL_STORAGE_CURRENT_METADATA);
-      localStorage.removeItem(NAME_OF_LOCAL_STORAGE_SALES);
-      setTimeout(() => {
-        window.location.reload();
-      }, 3000);
+      const dataForSubmit = {
+        salesData,
+        userData,
+      };
+      const { data } = await post("/record", dataForSubmit);
+
+      if (data?.status === 200 || data?.status === 201) {
+        toast.success("Datos enviados con exito");
+        resetSales();
+        localStorage.removeItem(NAME_OF_LOCAL_STORAGE_USER_WHO_SELL);
+        localStorage.removeItem(NAME_OF_LOCAL_STORAGE_CURRENT_METADATA);
+        localStorage.removeItem(NAME_OF_LOCAL_STORAGE_SALES);
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+      }
+      data?.status === 400 && toast.error("Error al enviar los datos");
+      data?.status === 500 && toast.error("Error en el servidor");
+      data?.status === 404 && toast.error("Error en la ruta");
+      data?.status === 401 && toast.error("Error de autenticacion");
+    } catch (error) {
+      console.error(error);
     }
-    response.status === 400 && toast.error("Error al enviar los datos");
-    response.status === 500 && toast.error("Error en el servidor");
-    response.status === 404 && toast.error("Error en la ruta");
-    response.status === 401 && toast.error("Error de autenticacion");
   };
 
   useEffect(() => {}, [stateUpdate, isEdited]);
