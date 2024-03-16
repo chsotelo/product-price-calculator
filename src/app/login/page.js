@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z, ZodError } from "zod";
 
-// Definir el esquema de validación con Zod
 const loginSchema = z.object({
   usuario: z.string().min(1, "Usuario es requerido"),
   contrasena: z.string().min(1, "Contraseña es requerida"),
@@ -17,24 +16,33 @@ function PageLogin() {
     formState: { errors },
   } = useForm();
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
     try {
+      setLoading(true);
       // Validar los datos del formulario con Zod
       loginSchema.parse(data);
-      // Enviar datos al servidor o realizar otras acciones
 
-      const res = await signIn("credentials", {
+      await signIn("credentials", {
         username: data.usuario,
         password: data.contrasena,
-      });
-      console.log("Resultado de la autenticación:", res);
+      })
+        .then((res) => {
+          return res;
+        })
+        .catch((err) => {
+          console.error({ err });
+          localStorage.setItem("error", err);
+          return;
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     } catch (err) {
       if (err instanceof ZodError) {
-        // Manejar errores de validación de Zod
         setError(err.errors[0].message);
       } else {
-        // Manejar otros tipos de errores
         console.error("Error:", err);
       }
     }
@@ -90,9 +98,13 @@ function PageLogin() {
         <div className="mb-4">
           <button
             type="submit"
+            disabled={loading}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
             Enviar
           </button>
+        </div>
+        <div className="mb-4">
+          {loading && <div className="text-green-500">Iniciando ...</div>}
         </div>
       </form>
     </div>

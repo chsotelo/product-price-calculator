@@ -25,7 +25,7 @@ export default function Homepage() {
           manera automatica, precisa, perdurable y segura.
         </p>
         <section className="mt-10">
-          <h2 className="text-red-500 text-xl ">Funcionalidades</h2>
+          <h2 className="text-red-500 text-xl ">Accesos directos</h2>
           <div className="mt-4 flex flex-row gap-6 flex-wrap ">
             {functionalitiesItems.map((item, index) => {
               return (

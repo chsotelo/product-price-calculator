@@ -17,6 +17,11 @@ const userSchema = new Schema({
       trim: true,
     },
   },
+  urlPhoto: {
+    type: String,
+    required: false,
+    default: null,
+  },
   phoneNumber: {
     type: String,
     required: true,
@@ -51,9 +56,12 @@ const userSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  isAdmin: {
-    type: Boolean,
-    default: false,
+  role: {
+    type: Object,
+    default: {
+      isAdmin: false,
+      isUser: true,
+    },
   },
 });
 

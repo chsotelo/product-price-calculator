@@ -12,7 +12,7 @@ export const Input = ({
   getValues,
   required = false,
 }) => {
-  const inputRef = useRef(null); // Definir la referencia inputRef
+  const inputRef = useRef(null);
 
   const inputStyle = {
     paddingLeft: "0.5rem",
@@ -43,7 +43,7 @@ export const Input = ({
       </label>
 
       <input
-        ref={inputRef} // Asignar la referencia inputRef al input
+        ref={inputRef}
         className={`rounded-xl ${width}`}
         placeholder={placeholder}
         type={type}

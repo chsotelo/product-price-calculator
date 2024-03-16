@@ -8,12 +8,8 @@ export async function middleware(request) {
     secret: process.env.NEXTAUTH_SECRET,
   });
 
-  console.log({ session });
-  // if (request?.nextUrl?.pathname.startsWith("/api/auth")) {
-  //   return NextResponse.redirect(new URL("/login", request.url));
-  // }
   if (!session) {
-    return NextResponse.redirect(new URL("/login", request.url));
+    return NextResponse.rewrite(new URL("/login", request.url));
   }
 
   if (session) {
@@ -24,5 +20,12 @@ export async function middleware(request) {
 }
 
 export const config = {
-  matcher: ["/login", "/abocado", "/home", "/search-sale", "/others"],
+  matcher: [
+    "/abocado",
+    "/home",
+    "/search-sale",
+    "/others",
+    "/register",
+    "/login",
+  ],
 };

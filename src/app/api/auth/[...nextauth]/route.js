@@ -17,7 +17,6 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        console.log({ credentials });
         try {
           await dbConnect();
           const user = await User.findOne({ email: credentials.username });
