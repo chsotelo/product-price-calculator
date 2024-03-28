@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 export const useAxios = () => {
-  const baseUrl =
-    (process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000") + "/api";
+  const baseUrl = "/api";
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
